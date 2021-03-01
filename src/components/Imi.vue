@@ -5,13 +5,11 @@
         size="large"
         placeholder="old password"
         v-model="oldpassword"
-        allowClear
         autoFocus
       >
       </a-input-password>
 
-      <a-input size="large" placeholder="salt domain" v-model="salt" allowClear>
-      </a-input>
+      <a-input size="large" placeholder="salt domain" v-model="salt"> </a-input>
 
       <a-input-password
         size="large"
