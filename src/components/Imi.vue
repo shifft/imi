@@ -16,12 +16,7 @@
         placeholder="new password"
         v-model="newpassword"
       >
-        <a-icon
-          slot="addonAfter"
-          type="copy"
-          id="newpassword"
-          :data-clipboard-text="newpassword"
-        />
+        <a-icon slot="addonAfter" type="copy" @click="doCopy" />
       </a-input-password>
     </a-col>
   </a-row>
@@ -29,7 +24,6 @@
 
 <script>
 import md5 from "blueimp-md5";
-import Clipboard from "clipboard";
 
 function generate(password, salt) {
   if (!password || !salt) {
@@ -69,16 +63,17 @@ export default {
       salt: "",
     };
   },
-  created() {
-    const self = this;
-    let clipboard = new Clipboard("#newpassword");
-    clipboard.on("success", function () {
-      self.$message.success("复制成功");
-    });
-
-    clipboard.on("error", (err) => {
-      self.$message.error(`复制失败: ${err}`);
-    });
+  methods: {
+    doCopy: function () {
+      this.$copyText(this.newpassword).then(
+        () => {
+          this.$message.success("复制成功");
+        },
+        (err) => {
+          this.$message.error(`复制失败: ${err}`);
+        }
+      );
+    },
   },
   computed: {
     newpassword() {

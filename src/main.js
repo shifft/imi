@@ -1,5 +1,6 @@
 import { Col, Icon, Input, Layout, message, Row, Space } from 'ant-design-vue'
 import Vue from 'vue'
+import VueClipboard from 'vue-clipboard2'
 import App from './App.vue'
 
 Vue.component(Col.name, Col)
@@ -16,6 +17,8 @@ Vue.component(Layout.Footer.name, Layout.Footer)
 Vue.prototype.$message = message
 
 Vue.config.productionTip = false
+
+Vue.use(VueClipboard)
 
 new Vue({
   render: (h) => h(App),
